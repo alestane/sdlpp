@@ -5,8 +5,8 @@
 //  Created by Nevin Flanagan on 12/4/22.
 //
 
-#ifndef sdl2_h
-#define sdl2_h
+#ifndef sdl_hpp
+#define sdl_hpp
 
 #include <SDL.h>
 
@@ -15,7 +15,19 @@
 #include <numeric>
 #include <concepts>
 
+namespace _sdl {}
+
+#if SDL_MAJOR_VERSION == 2
 namespace sdl2 {
+    using namespace _sdl;
+}
+#elif SDL_MAJOR_VERSION == 3
+namespace sd3 {
+    using namespace _sdl;
+}
+#endif
+
+namespace _sdl {
 
     template <typename rep> requires std::unsigned_integral<rep> || std::floating_point<rep>
     using period = std::conditional_t<std::is_integral_v<rep>, std::chrono::milliseconds::period, std::chrono::seconds::period>;

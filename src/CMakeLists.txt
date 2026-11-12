@@ -1,8 +1,15 @@
 cmake_minimum_required (VERSION 3.8)
 
-add_library(sdlpp STATIC ../include/sdlpp/sdl2.h sdl2.cpp)
+set(SDL_HPP ../include/sdlpp/)
 
-target_include_directories(sdlpp PUBLIC "../include/sdlpp/")
+set(SDLPP_HEADERS
+	"_def"
+	"${SDL_HPP}sdl.h")
+
+set(SDLPP_SOURCES
+	"sdl.cpp")
+
+add_library(sdlpp STATIC ${SDLPP_HEADERS} ${SDLPP_SOURCES})
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET sdlpp PROPERTY CXX_STANDARD 20)

@@ -1,0 +1,11 @@
+#pragma once
+
+#ifndef UTIL_def_
+#define UTIL_def_
+
+#define STRINGIFY(S) STRINGIZE(S)
+#define STRINGIZE(S) #S
+
+#define INTERNAL(header) STRINGIFY(../include/sdlpp/##header)
+
+#endif
