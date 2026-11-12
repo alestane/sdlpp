@@ -1,13 +1,6 @@
 cmake_minimum_required (VERSION 3.8)
 
-add_library(sdlpp STATIC)
-
-target_sources(sdlpp 
-	INTERFACE 
-		sdl2.h 
-	PUBLIC 
-		sdl2.cpp
-)
+add_library(sdlpp STATIC ../include/sdlpp/sdl2.h sdl2.cpp)
 
 target_include_directories(sdlpp PUBLIC "../include/sdlpp/")
 

@@ -94,7 +94,7 @@ namespace sdl2 {
         constexpr rectangle() = default;
         constexpr rectangle(int x, int y, int w, int h) : SDL_Rect{ x, y, w, h } {}
 
-        constexpr operator bool() const { return !SDL_RectEmpty(this); }
+        operator bool() const { return !SDL_RectEmpty(this); }
         bool contains(const point& p) const { return SDL_PointInRect(&p, this); }
     };
 
@@ -103,7 +103,7 @@ namespace sdl2 {
         constexpr rectangle() noexcept = default;
         constexpr rectangle(float x, float y, float w, float h) : SDL_FRect{ x, y, w, h } {}
         constexpr rectangle(const rectangle<int>& r) : rectangle{ static_cast<float>(r.x), static_cast<float>(r.y), static_cast<float>(r.w), static_cast<float>(r.h) } {}
-        operator rectangle<int>() const { return rectangle{ static_cast<int>(x), static_cast<int>(y), static_cast<int>(w), static_cast<int>(h) }; }
+        operator rectangle<int>() const { return rectangle<int>{ static_cast<int>(x), static_cast<int>(y), static_cast<int>(w), static_cast<int>(h) }; }
         operator bool() const { return !SDL_FRectEmpty(this); }
         bool contains(const fpoint& p) const { return SDL_PointInFRect(&p, this); }
     };
